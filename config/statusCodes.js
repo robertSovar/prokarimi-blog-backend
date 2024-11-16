@@ -4,6 +4,7 @@ const statusCodes = {
   accepted: 202,
   noContent: 204,
   badRequest: 400,
+  unauthorized: 401,
   notFound: 404,
   internalServerError: 500,
 };
