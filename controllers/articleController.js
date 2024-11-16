@@ -83,7 +83,6 @@ const updateArticle = async (req, res) => {
     article.description = req.body.description;
     article.content = req.body.content;
     article.author = req.body.author;
-    article.date = req.body.date;
 
     const updatedArticle = await article.save();
     res.status(statusCodes.ok).json({
@@ -106,7 +105,7 @@ const deleteArticle = async (req, res) => {
         message: "Article not found",
       });
     }
-    res.status(statusCodes.ok).json({
+    res.status(statusCodes.noContent).json({
       message: "Article deleted with success",
       data: article,
     });
