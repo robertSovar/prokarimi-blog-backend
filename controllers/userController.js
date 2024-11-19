@@ -15,6 +15,7 @@ async function signup(data) {
     let encryptedPassword = await bcrypt.hash(data.password, saltRounds);
 
     const newUser = new User({
+      username: data.username,
       email: data.email,
       password: encryptedPassword,
       role: data.role,

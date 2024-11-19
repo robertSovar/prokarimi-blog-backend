@@ -6,7 +6,7 @@ import userController from "../../controllers/userController.js";
 const router = express.Router();
 
 function checkRegisterRequestPayload(data) {
-  if (!data?.email || !data?.password) {
+  if (!data?.username || !data?.email || !data?.password) {
     return false;
   }
   return true;
@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
       throw new Error("Invalid request payload for signup");
     }
 
-    const { email, password, role } = req.body;
+    const { username, email, password, role } = req.body;
     const user = await User.findOne({ email });
 
     if (user) {
@@ -32,7 +32,12 @@ router.post("/signup", async (req, res) => {
         data: "User already exists",
       });
     }
-    const newUser = await userController.signup({ email, password, role });
+    const newUser = await userController.signup({
+      username,
+      email,
+      password,
+      role,
+    });
     res
       .status(statusCodes.created)
       .json({ message: "User created with success", data: newUser });
