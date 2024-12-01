@@ -28,4 +28,7 @@ app.use(express.json());
 app.use("/api/articles", articleRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/comments", commentRouter);
+app.use("api/hello", (req, res) => {
+  res.send("Hello world");
+});
 export default app;
