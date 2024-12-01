@@ -14,6 +14,11 @@ connectToDb();
 
 app.use(passport.initialize());
 
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+
 app.use(cors());
 app.use(express.json());
 
