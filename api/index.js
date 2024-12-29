@@ -17,8 +17,8 @@ app.use(passport.initialize());
 
 const corsOptions = {
   origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
 app.options("*", cors(corsOptions));

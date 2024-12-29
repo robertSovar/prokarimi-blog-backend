@@ -2,7 +2,8 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/api/$1.js"
+      "dest": "/api/$1.js",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
     }
   ]
 }
