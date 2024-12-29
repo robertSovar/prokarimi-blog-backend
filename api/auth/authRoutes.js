@@ -121,4 +121,6 @@ router.get("/logout", userController.validateAuth, async (req, res, next) => {
     throw new Error(`The request could not be fullfield: ${error}`);
   }
 });
+
+
 export default router;
