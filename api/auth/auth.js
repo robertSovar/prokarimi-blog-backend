@@ -13,7 +13,7 @@ function checkRegisterRequestPayload(data) {
 }
 
 // localhost:5000/api/auth/signup
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res, next) => {
   try {
     const isValid = checkRegisterRequestPayload(req.body);
 
@@ -43,6 +43,7 @@ router.post("/signup", async (req, res) => {
       .json({ message: "User created with success", data: newUser });
   } catch (error) {
     res.status(statusCodes.badRequest).json({ error: error.message });
+    next(error);
   }
 });
 
@@ -54,7 +55,7 @@ function checkLoginRequestPayload(data) {
 }
 
 // localhost:5000/api/auth/login
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
   try {
     const isValid = checkLoginRequestPayload(req.body);
 
@@ -82,11 +83,12 @@ router.post("/login", async (req, res) => {
     res
       .status(statusCodes.badRequest)
       .json({ error: "Email or password invalid", error: error.message });
+    next(error);
   }
 });
 
 // localhost:5000/api/auth/user
-router.get("/user", userController.validateAuth, async (req, res) => {
+router.get("/user", userController.validateAuth, async (req, res, next) => {
   try {
     const header = req.get("authorization");
     if (!header) {
@@ -119,6 +121,7 @@ router.get("/logout", userController.validateAuth, async (req, res, next) => {
     res.status(statusCodes.noContent).send();
   } catch (error) {
     throw new Error(`The request could not be fullfield: ${error}`);
+    next(error);
   }
 });
 
