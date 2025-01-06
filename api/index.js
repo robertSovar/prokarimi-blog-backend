@@ -15,15 +15,8 @@ connectToDb();
 
 app.use(passport.initialize());
 
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-};
+app.use(cors());
 
-app.options("*", cors(corsOptions));
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 const port = process.env.PORT || 5000;
